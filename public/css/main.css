@@ -1,0 +1,16 @@
+.my-list-manager-col {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.my-list-manager-col .btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 768px) {
+    .my-list-manager-col .btn {
+        width: 100%;
+    }
+}

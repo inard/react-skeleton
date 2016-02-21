@@ -16,14 +16,41 @@ var ListManager = React.createClass({
         this.setState({items: currentItems, newItemText: ""});
     },
     render: function () {
+        var panelStyle = {
+            marginTop: 10
+        };
+
+        var panelHeadingStyle = {
+        };
+
+        if (this.props.headingColor) {
+            panelHeadingStyle.background = this.props.headingColor;
+        }
+
         return (
-            <div>
-                <h3>{this.props.title}</h3>
-                <form onSubmit={this.handleOnSubmit}>
-                    <input onChange={this.handleOnChange} value={this.state.newItemText} />
-                    <button>Add</button>
-                </form>
-                <List items={this.state.items} />
+            <div className="panel panel-default" style={panelStyle}>
+                <div className="panel-heading" style={panelHeadingStyle}>
+                    <h3 className="panel-title">{this.props.title}</h3>
+                </div>
+                <div className="panel-body">
+                    <form onSubmit={this.handleOnSubmit}>
+                        <div className="row">
+                            <div className="col-sm-1 my-list-manager-col">
+                            </div>
+                            <div className="col-sm-6 my-list-manager-col">
+                                <input className="form-control" onChange={this.handleOnChange} value={this.state.newItemText} />
+                            </div>
+                            <div className="col-sm-1 my-list-manager-col">
+                            </div>
+                            <div className="col-sm-3 my-list-manager-col">
+                                <button className="btn btn-primary">Add</button>
+                            </div>
+                            <div className="col-sm-1 my-list-manager-col">
+                            </div>
+                        </div>
+                    </form>
+                    <List items={this.state.items} />
+                </div>
             </div>
         );
     }

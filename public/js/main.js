@@ -19094,25 +19094,58 @@ var ListManager = React.createClass({
         this.setState({ items: currentItems, newItemText: "" });
     },
     render: function () {
+        var panelStyle = {
+            marginTop: 10
+        };
+
+        var panelHeadingStyle = {};
+
+        if (this.props.headingColor) {
+            panelHeadingStyle.background = this.props.headingColor;
+        }
+
         return React.createElement(
             "div",
-            null,
+            { className: "panel panel-default", style: panelStyle },
             React.createElement(
-                "h3",
-                null,
-                this.props.title
-            ),
-            React.createElement(
-                "form",
-                { onSubmit: this.handleOnSubmit },
-                React.createElement("input", { onChange: this.handleOnChange, value: this.state.newItemText }),
+                "div",
+                { className: "panel-heading", style: panelHeadingStyle },
                 React.createElement(
-                    "button",
-                    null,
-                    "Add"
+                    "h3",
+                    { className: "panel-title" },
+                    this.props.title
                 )
             ),
-            React.createElement(List, { items: this.state.items })
+            React.createElement(
+                "div",
+                { className: "panel-body" },
+                React.createElement(
+                    "form",
+                    { onSubmit: this.handleOnSubmit },
+                    React.createElement(
+                        "div",
+                        { className: "row" },
+                        React.createElement("div", { className: "col-sm-1 my-list-manager-col" }),
+                        React.createElement(
+                            "div",
+                            { className: "col-sm-6 my-list-manager-col" },
+                            React.createElement("input", { className: "form-control", onChange: this.handleOnChange, value: this.state.newItemText })
+                        ),
+                        React.createElement("div", { className: "col-sm-1 my-list-manager-col" }),
+                        React.createElement(
+                            "div",
+                            { className: "col-sm-3 my-list-manager-col" },
+                            React.createElement(
+                                "button",
+                                { className: "btn btn-primary" },
+                                "Add"
+                            )
+                        ),
+                        React.createElement("div", { className: "col-sm-1 my-list-manager-col" })
+                    )
+                ),
+                React.createElement(List, { items: this.state.items })
+            )
         );
     }
 });
@@ -19125,5 +19158,7 @@ var ReactDOM = require("react-dom");
 var ListManager = require("./components/ListManager.jsx");
 
 ReactDOM.render(React.createElement(ListManager, { title: "Ingredients" }), document.getElementById("ingredients"));
+ReactDOM.render(React.createElement(ListManager, { title: "ToDo" }), document.getElementById("todo"));
+ReactDOM.render(React.createElement(ListManager, { title: "Cristmas", headingColor: "fuchsia" }), document.getElementById("cristmas"));
 
 },{"./components/ListManager.jsx":161,"react":157,"react-dom":1}]},{},[162]);
